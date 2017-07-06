@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=1.0 user-scalable=0">
+
+		<!--css-->
+		<link rel="stylesheet" href="css/style.css" />
+
+		<!--favicon-->
+		<link rel="shortcut icon" href="/favicon.icon" >
+
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<![endif]-->
+		<!--add sp css-->
+
+	</head>
+	<body>
+
+		<header>
+			・見出しがあったほうがよい（必ずしも必要ではない）
+			・ページヘッダー、セクションヘッダーとしても使える（article > header + .contentなど）
+		</header>
+
+			<nav>
+				・フッターにはいらないかも
+				・パンくずとかあり
+				・見出しつけてもいいよ
+				・主要なナビゲーショングループに使用（大きく囲むか、asideで囲む）
+			</nav>
+
+		<article>
+			・ブログ記事
+			・フィードとしてなりたつもの
+			・独立したコンテンツ
+		</article>
+
+		<section>
+			・1つの章や説
+			・見出しが必要
+			<section></section>
+			↑入れ子もあり
+		</section>
+
+		<div class="right-side">
+			<aside>
+				・そのページに無くてもページが成り立つものを入れる
+			</aside>
+		</div>
+
+		<footer>
+			・ページ内にいくつあってもよい
+			・ページフッター、セクションフッターとしても使える（article > .content + footerなど）
+			・セクションの途中にあってもよい（一番下でなくてもよい）
+		</footer>
+
+		<address>
+			・そのページの連絡先
+			・ページフッターにある場合はWEBサイトの連絡先
+		</address>
+
+		<!--js-->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="js/bundle.js"></script>
+
+	</body>
+</html>

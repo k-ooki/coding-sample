@@ -1,0 +1,487 @@
+@charset "utf-8";
+
+/*
+
+Theme Name: bon-dev
+Description: {日本語}　*任意
+Author: tv asahi mediaplex
+Author URI: http://www.mediaplex.co.jp/
+
+ */
+
+//reset styles
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+html {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+q, blockquote {
+  quotes: none;
+}
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+a img {
+  border: none;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block;
+}
+
+//初期変数
+$defaultW:960px;
+$rootFontSize:62.5%;
+$lineHeight:2;
+
+$widthS:480px;
+$widthSMore:$widthS + 1;
+$widthM:768px;
+$widthMMore:$widthM + 1;
+
+$color:#64696c;
+$linkColor:#64696c;
+
+$selectionBg:#99ffdf;
+$selectionText:#000;
+
+
+$fontFamilyM:"ヒラギノ明朝 Pro W6", "Hiragino Mincho Pro", "HGS明朝E", "ＭＳ Ｐ明朝", serif;
+$fontFamilyG:Helvetica, Arial, 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', Meiryo, メイリオ, sans-serif;
+
+
+//mixin
+
+@mixin fontSize($px){
+	font-size:$px + px;
+	font-size:$px / 10 + rem;
+}
+
+@mixin spriteText{
+	text-indent:100%;
+	white-space:nowrap;
+	overflow:hidden;
+}
+
+@mixin hoverAlpha{
+	&:hover{
+		opacity:.8;
+	}
+}
+
+@mixin ellipsisText{
+	overflow-x: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+@mixin trsHoverAlpha{
+	transition:opacity .3s ease-out 0s;
+	&:hover{
+		opacity:.7;
+		transition:opacity .3s ease-out 0s;
+	}
+}
+
+
+/*=======================================
+WordPress Native Styles
+=======================================*/
+
+strong { font-weight: bold; }
+em { font-style: italic; }
+blockquote {
+	display: block;
+	line-height: $lineHeight;
+	-webkit-margin-before: 1em;
+	-webkit-margin-after: 1em;
+	-webkit-margin-start: 2em;
+	-webkit-margin-end: 2em;
+}
+
+/* img */
+.aligncenter {
+	display: block;
+	margin: 0 auto;
+}
+
+.alignright {
+	float: right;
+	margin: 0 0 2em 2em;
+}
+
+.alignleft {
+	float: left;
+	margin: 0 2em 2em 0;
+}
+
+img[class*="wp-image-"],
+img[class*="attachment-"] {
+	height: auto;
+	max-width: 100%;
+}
+
+.wysiwyg-contents{
+	padding: 50px 30px;
+	background: #fff;
+	width: 1000px;
+	margin: 0 auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	clear: both;
+	margin-bottom: 1em;
+}
+
+.wysiwyg-front, .editor-area{
+	@extend .clearfix;
+	//h styele
+	$j: 0;
+	$n: 1;//h num
+
+	$t: 20;// times
+	$max: 200%;//start
+
+	@while $n <= 6 {
+		h#{ $n } {
+			font-size:#{ $max - $j * $t };
+		}
+		$n: $n + 1;
+		$j: $j + 1;
+	}
+	h1, h2, h3{
+		letter-spacing: 1px;
+	}
+
+	p{
+		margin-bottom: 1em;
+	}
+
+	ul, ol, p{
+		line-height: $lineHeight;
+	}
+	ul, ol{
+		margin-bottom: 1.5em;
+		li{
+			margin-top: .5em;
+			&:first-child{
+				margin-top: 0;
+			}
+		}
+	}
+
+	ul{
+		display: table;
+		li{
+			display: table-row;
+			&:after{
+				content: "";
+				display: block;
+				margin-bottom: 0.5em;
+			}
+			&:before{
+				content: "•";
+				display: table-cell;
+				padding-right: 0.4em;
+			}
+		}
+	}
+
+	ol{
+		li {
+			display: table-row;
+			counter-increment: table-ol;
+			&:after {
+				content: "";
+				display: block;
+				margin-bottom: 5px;
+			}
+			&:before {
+				content: counter(table-ol) ".";
+				display: table-cell;
+				padding-right: 0.5em;
+				text-align: right;
+			}
+		}
+	}
+
+}
+
+body.mceContentBody.editor-area {
+	margin: 30px;
+	font-size: 1.3em;
+	font-family:$fontFamilyG;
+}
+
+body.wp-autoresize.editor-area{
+}
+
+
+/*========================================
+common style
+========================================*/
+
+html {
+	color:$color;
+	font-family:$fontFamilyG;
+	font-size:$rootFontSize;
+}
+
+// 1pxあたりは0.195%
+// 769: 668px 〜 769px（iphone6 plusヨコ相当）
+// 667: 569px 〜 667px（iphone6ヨコ相当）
+// 568: 415px 〜 568px（iphone5ヨコ相当）
+// 414: 376px 〜 414px（iphone6 plusタテ相当）
+// 375: 321px 〜 375px（iphone6タテ相当）
+// 320: 〜 320px（iphone5タテ相当）
+
+$pixels: (
+	769: 769px,
+	667: 667px,
+	568: 568px,
+	414: 414px,
+	375: 375px,
+	320: 320px
+);
+
+@each $key, $pixel in $pixels {
+	@media screen and(max-width: #{$pixel}) {
+		html {
+			font-size: 0.195% * $key;
+		}
+	}
+}
+
+body{
+	font-size: 1.3em;
+	-webkit-text-size-adjust: none;
+	-webkit-font-smoothing:subpixel-antialiased;
+}
+
+a{
+	color:$linkColor;
+	&:hover{
+		color:$linkColor + 70;
+	}
+	&:active{
+		color:$linkColor + 70;
+	}
+	&:visited{
+	}
+}
+
+::selection {
+	color:$selectionText;
+	background:$selectionBg;
+}
+::-moz-selection {
+	color:$selectionText;
+	background:$selectionBg;
+}
+
+img{
+	vertical-align:bottom; //テレ朝テンプレ案件のときはいらない
+}
+
+*{//テレ朝テンプレ案件のときは注意
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+input[type="button"],
+input[type="submit"],
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="url"],
+textarea,
+button{
+	margin:0px;
+	padding:0px;
+	border:none;
+	border-radius:0;
+	-webkit-appearance: none;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="url"],
+textarea{
+	width: 100%;
+	padding: 5px;
+	max-width: 100%;
+	border: 1px solid #efefef;
+	&:focus{
+		background: #f7f7f7;
+	}
+}
+
+input[type="button"],
+input[type="submit"],
+button{
+	color: #fff;
+	background: #333;
+	padding: 10px 20px;
+	&:focus{
+		border: none;
+		outline: none;
+	}
+}
+
+input:focus::-webkit-input-placeholder,
+isindex:focus::-webkit-input-placeholder,
+textarea:focus::-webkit-input-placeholder {
+    color: transparent;
+}
+
+input:-webkit-autofill {
+	-webkit-box-shadow: 0 0 0px 1000px #fff inset;
+}
+
+.wpcf7{
+	.wpcf7-form-control-wrap{
+		display: block!important;
+		margin-top: 5px!important;
+	}
+	.wpcf7-submit, .ajax-loader{
+		display: block!important;
+	}
+	.wpcf7-submit{
+		cursor:pointer;
+		margin: 0 auto!important;
+	}
+	.ajax-loader{
+		margin: 7px auto 0!important;
+	}
+	div.wpcf7-response-output{
+		padding:1em;
+	}
+	div.wpcf7-validation-errors{
+		border:none;
+		background:#ffdbdb;
+	}
+	div.wpcf7-mail-sent-ok{
+		border:none;
+		background:#dbeaff;
+	}
+	span.wpcf7-not-valid-tip{
+		display:block;
+		margin-top: 5px;
+		@include fontSize(10);
+	}
+}
+
+/*========================================
+general style
+========================================*/
+
+.clearfix {
+  zoom: 1;
+}
+
+.clearfix:before, .clearfix:after {
+  display: block;
+  height: 0;
+  visibility: hidden;
+  content: "\0020";
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.font-b{
+	font-weight:bold;
+}
+
+.line-height{
+	line-height:$lineHeight;
+}
+
+.align-c{
+	text-align:center;
+}
+
+.fit-list-disc {
+  display: table;
+	li{
+		display: table-row;
+		&:after{
+			content: "";
+			display: block;
+			margin-bottom: 0.5em;
+		}
+		&:before{
+			content: "•";
+			display: table-cell;
+			padding-right: 0.4em;
+		}
+	}
+}
+
+.fit-list-ol {
+  list-style: none;
+  padding-left: 0;
+  display: table;
+	li {
+		display: table-row;
+		counter-increment: table-ol;
+		&:after {
+			content: "";
+			display: block;
+			margin-bottom: 5px;
+		}
+		&:before {
+			content: counter(table-ol) ".";
+			display: table-cell;
+			padding-right: 0.5em;
+			text-align: right;
+		}
+	}
+}
+
+//.mb
+$i: 5;
+@while $i <= 50 {
+	.mb#{$i} { margin-bottom: #{$i}px; }
+	$i: $i + 5;
+}
+
