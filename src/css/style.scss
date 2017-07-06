@@ -126,10 +126,6 @@ $gray900:#212121;
 @function chP($pSize, $wSize){
 	@return percentage($pSize / $wSize);
 }
-.hoge{
-	width: chP(30, 60);
-}
-
 
 /* ========================================
  general style
