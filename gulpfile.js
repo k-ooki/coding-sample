@@ -17,7 +17,7 @@ gulp.task('server', function(){
 		server: {
       baseDir: 'dist/'
 		},
-    open: true,
+    open: false,
     browser: 'Google Chrome Canary',
     ui: {
       port: 9090
