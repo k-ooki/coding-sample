@@ -1,0 +1,300 @@
+@charset "utf-8";
+
+//reset styles
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+html {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+q, blockquote {
+  quotes: none;
+}
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+a img {
+  border: none;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block;
+}
+
+/* ========================================
+mixin function
+========================================*/
+
+$defaultW:980px;
+$rootFontSize:62.5%;
+$lineHeight:2;
+
+$widthS:480px;
+$widthSMore:$widthS + 1;
+$widthM:768px;
+$widthMMore:$widthM + 1;
+
+$color:#323232;
+$colorGray:#F5F5F5;
+$colorRed:#e32e2e;
+
+$linkColor:#323232;
+
+$bdrColorGray:#eaeaea;
+
+$fontFamilyM:"ヒラギノ明朝 Pro W6", "Hiragino Mincho Pro", "HGS明朝E", "ＭＳ Ｐ明朝", serif;
+$fontFamilyG:'Roboto', Helvetica, Arial, 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', Meiryo, メイリオ, sans-serif;
+$fontFamilyR: 'Roboto', sans-serif;
+
+$gray50:#FAFAFA;
+$gray100:#F5F5F5;
+$gray200:#EEEEEE;
+$gray300:#E0E0E0;
+$gray400:#BDBDBD;
+$gray500:#9E9E9E;
+$gray600:#757575;
+$gray700:#616161;
+$gray800:#424242;
+$gray900:#212121;
+
+
+@mixin fontSize($px){
+	font-size:$px + px;
+	font-size:$px / 10 + rem;
+}
+
+@mixin spriteText{
+	text-indent:100%;
+	white-space:nowrap;
+	overflow:hidden;
+}
+
+@mixin hoverAlpha{
+	&:hover{
+		opacity:.7;
+	}
+}
+
+@mixin hoverAlphaTrstn{
+	transition:opacity .3s ease-out;
+	&:hover{
+		opacity:.7;
+		transition:opacity .3s ease-out;
+	}
+}
+
+@mixin boxShadow1{
+	box-shadow:0 2px 6px rgba(0,0,0,.07), 0 -1px 3px rgba(0,0,0,.07);
+}
+
+@function chP($pSize, $wSize){
+	@return percentage($pSize / $wSize);
+}
+
+/* ========================================
+ general style
+========================================*/
+
+.clearfix {
+  zoom: 1;
+}
+
+.clearfix:before, .clearfix:after {
+  display: block;
+  height: 0;
+  visibility: hidden;
+  content: "\0020";
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.font-b{
+	font-weight:bold;
+}
+
+.line-height{
+	line-height:$lineHeight;
+}
+
+.align-l{
+	text-align:left;
+}
+
+.align-r{
+	text-align:right;
+}
+
+.align-c{
+	text-align:center;
+}
+
+.fit-list-disc {
+  display: table;
+	li{
+		display: table-row;
+		&:after{
+			content: "";
+			display: block;
+			margin-bottom: 10px;
+		}
+		&:before{
+			content: "•";
+			display: table-cell;
+			padding-right: 0.4em;
+		}
+	}
+}
+
+.fit-list-ol {
+  list-style: none;
+  padding-left: 0;
+  display: table;
+	li {
+		display: table-row;
+		counter-increment: table-ol;
+		&:after {
+			content: "";
+			display: block;
+			margin-bottom:10px;
+		}
+		&:before {
+			content: counter(table-ol) ".";
+			display: table-cell;
+			padding-right: 0.5em;
+			text-align: right;
+		}
+	}
+}
+
+//.mb
+$i: 5;
+@while $i <= 50 {
+	.mb#{$i} { margin-bottom: #{$i}px; }
+	$i: $i + 5;
+}
+
+/* Google Material icons */
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'liga';
+}
+
+.wysiwyg-front, .editor-area{
+	@extend .clearfix;
+	//h styele
+	$j: 0;
+	$n: 1;//h num
+
+	$t: 20;// times
+	$max: 200%;//start
+
+	@while $n <= 6 {
+		h#{ $n } {
+			font-size:#{ $max - $j * $t };
+		}
+		$n: $n + 1;
+		$j: $j + 1;
+	}
+	h1, h2, h3{
+		letter-spacing: 1px;
+	}
+
+	p{
+		margin-bottom: 1em;
+	}
+
+	ul, ol, p{
+		line-height: $lineHeight;
+	}
+	ul, ol{
+		margin-bottom: 1.5em;
+		li{
+			margin-top: .5em;
+			&:first-child{
+				margin-top: 0;
+			}
+		}
+	}
+
+	ul{
+		display: table;
+		li{
+			display: table-row;
+			&:after{
+				content: "";
+				display: block;
+				margin-bottom: 0.5em;
+			}
+			&:before{
+				content: "•";
+				display: table-cell;
+				padding-right: 0.4em;
+			}
+		}
+	}
+
+	ol{
+		li {
+			display: table-row;
+			counter-increment: table-ol;
+			&:after {
+				content: "";
+				display: block;
+				margin-bottom: 5px;
+			}
+			&:before {
+				content: counter(table-ol) ".";
+				display: table-cell;
+				padding-right: 0.5em;
+				text-align: right;
+			}
+		}
+	}
+
+}

@@ -62,18 +62,18 @@ mixin function
 /* ========================================
  general style
 ========================================*/
-.clearfix {
+.clearfix, .wysiwyg-front, .editor-area {
   zoom: 1;
 }
 
-.clearfix:before, .clearfix:after {
+.clearfix:before, .wysiwyg-front:before, .editor-area:before, .clearfix:after, .wysiwyg-front:after, .editor-area:after {
   display: block;
   height: 0;
   visibility: hidden;
   content: "\0020";
 }
 
-.clearfix:after {
+.clearfix:after, .wysiwyg-front:after, .editor-area:after {
   clear: both;
 }
 
@@ -82,7 +82,7 @@ mixin function
 }
 
 .line-height {
-  line-height: 1.8;
+  line-height: 2;
 }
 
 .align-l {
@@ -189,6 +189,74 @@ mixin function
   -webkit-font-feature-settings: 'liga';
      -moz-font-feature-settings: 'liga';
           font-feature-settings: 'liga';
+}
+
+.wysiwyg-front h1, .editor-area h1 {
+  font-size: 200%;
+}
+.wysiwyg-front h2, .editor-area h2 {
+  font-size: 180%;
+}
+.wysiwyg-front h3, .editor-area h3 {
+  font-size: 160%;
+}
+.wysiwyg-front h4, .editor-area h4 {
+  font-size: 140%;
+}
+.wysiwyg-front h5, .editor-area h5 {
+  font-size: 120%;
+}
+.wysiwyg-front h6, .editor-area h6 {
+  font-size: 100%;
+}
+.wysiwyg-front h1, .wysiwyg-front h2, .wysiwyg-front h3, .editor-area h1, .editor-area h2, .editor-area h3 {
+  letter-spacing: 1px;
+}
+.wysiwyg-front p, .editor-area p {
+  margin-bottom: 1em;
+}
+.wysiwyg-front ul, .wysiwyg-front ol, .wysiwyg-front p, .editor-area ul, .editor-area ol, .editor-area p {
+  line-height: 2;
+}
+.wysiwyg-front ul, .wysiwyg-front ol, .editor-area ul, .editor-area ol {
+  margin-bottom: 1.5em;
+}
+.wysiwyg-front ul li, .wysiwyg-front ol li, .editor-area ul li, .editor-area ol li {
+  margin-top: .5em;
+}
+.wysiwyg-front ul li:first-child, .wysiwyg-front ol li:first-child, .editor-area ul li:first-child, .editor-area ol li:first-child {
+  margin-top: 0;
+}
+.wysiwyg-front ul, .editor-area ul {
+  display: table;
+}
+.wysiwyg-front ul li, .editor-area ul li {
+  display: table-row;
+}
+.wysiwyg-front ul li:after, .editor-area ul li:after {
+  content: "";
+  display: block;
+  margin-bottom: 0.5em;
+}
+.wysiwyg-front ul li:before, .editor-area ul li:before {
+  content: "•";
+  display: table-cell;
+  padding-right: 0.4em;
+}
+.wysiwyg-front ol li, .editor-area ol li {
+  display: table-row;
+  counter-increment: table-ol;
+}
+.wysiwyg-front ol li:after, .editor-area ol li:after {
+  content: "";
+  display: block;
+  margin-bottom: 5px;
+}
+.wysiwyg-front ol li:before, .editor-area ol li:before {
+  content: counter(table-ol) ".";
+  display: table-cell;
+  padding-right: 0.5em;
+  text-align: right;
 }
 
 /* ========================================
@@ -977,7 +1045,7 @@ top
   white-space: nowrap;
   display: inline-block;
   text-overflow: ellipsis;
-  background: url(./img/bread_crumb_arrow.png) 0 50% no-repeat;
+  background: url(../img/bread_crumb_arrow.png) 0 50% no-repeat;
 }
 .bread-crumb a:first-child {
   padding-left: 0;
@@ -1068,21 +1136,21 @@ top
   padding: 25px;
 }
 .post-content-news .detail p {
-  line-height: 1.8;
+  line-height: 2;
 }
 .post-content-news .movie {
   text-align: center;
   margin-bottom: 25px;
 }
 
-.dst-ttl {
+.dst-title {
   padding: 25px;
   border-bottom: 1px solid #eaeaea;
 }
-.dst-ttl time {
+.dst-title time {
   float: left;
 }
-.dst-ttl .ttl {
+.dst-title .post-title {
   clear: both;
   padding-top: 5px;
   line-height: 1.4;
@@ -1090,10 +1158,6 @@ top
   font-size: 2rem;
 }
 
-.post-ttl-sns {
-  float: right;
-}
-.post-ttl-sns .btn-item, .post-ttl-sns .twitter-share-button {
-  float: left;
-  margin-left: 10px;
+.single-news .post-content {
+  padding: 20px;
 }
